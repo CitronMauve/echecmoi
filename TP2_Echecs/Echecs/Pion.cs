@@ -16,21 +16,22 @@ namespace TP2_Echecs.Echecs
 
         public override bool Deplacer(Case destination)
         {
-            if (destination.colonne != this.position.colonne) {
-                if (!premierDeplacement &&
-                    destination.rangee - this.position.rangee <= 2)
+            int diffRangee = destination.rangee - this.position.rangee;
+            int diffColonne = destination.colonne - this.position.colonne;
+
+            if (diffColonne != 0) {
+                if (premierDeplacement && diffRangee <= 2)
                 {
                     premierDeplacement = false;
                     return destination.pieceActuelle == null;
                 }
-                if (destination.rangee - this.position.rangee == 1)
+                if (diffRangee == 1)
                 {
                     return destination.pieceActuelle == null;
                 }
             }
 
-            if(destination.rangee - this.position.rangee == 1 &&
-                destination.colonne - this.position.colonne == 1)
+            if (diffRangee == 1 && diffColonne == 1)
             {
                 return destination.pieceActuelle != null;
             }
