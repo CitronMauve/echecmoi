@@ -15,7 +15,7 @@ namespace TP2_Echecs.Echecs
 
 				// associations
 
-				Case(int i, int j)
+				public Case(int i, int j)
 				{
 						this.rangee = i;
 						this.colonne = j;
