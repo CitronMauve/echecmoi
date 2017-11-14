@@ -15,7 +15,10 @@ namespace TP2_Echecs.Echecs
 
         public override bool Deplacer(Case destination)
         {
-            throw new NotImplementedException();
+            int diffColonne = Math.Abs(destination.colonne - this.position.colonne);
+            int diffRangee = Math.Abs(destination.rangee - this.position.rangee);
+
+            return diffColonne == 1 && diffRangee == 1;            
         }
     }
 }
