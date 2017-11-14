@@ -48,12 +48,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Echecs\Case.cs" />
+    <Compile Include="Echecs\Cavalier.cs" />
     <Compile Include="Echecs\Couleur.cs" />
     <Compile Include="Echecs\Echiquier.cs" />
+    <Compile Include="Echecs\Fou.cs" />
     <Compile Include="Echecs\Joueur.cs" />
     <Compile Include="Echecs\Partie.cs" />
     <Compile Include="Echecs\Piece.cs" />
     <Compile Include="Echecs\Dame.cs" />
+    <Compile Include="Echecs\Pion.cs" />
+    <Compile Include="Echecs\Roi.cs" />
+    <Compile Include="Echecs\Tour.cs" />
     <Compile Include="IHM\FenetreDeJeu.cs">
       <SubType>Form</SubType>
     </Compile>
