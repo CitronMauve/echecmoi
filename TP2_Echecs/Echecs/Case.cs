@@ -7,20 +7,31 @@ using TP2_Echecs.IHM;
 
 namespace TP2_Echecs.Echecs
 {
-    public class Case
-    {
-        // attributs
-        
+		public class Case
+		{
+				// attributs
+				enum Couleur { Blanc, Noir };
+				int rangee, colonne;
+                Couleur couleur;
 
-        // associations
-        
+				// associations
 
-        // methodes
-        public void Link(Piece newPiece)
-        {
-            // 1. Deconnecter newPiece de l'ancienne case
+				Case(int i, int j)
+				{
+						this.rangee = i;
+						this.colonne = j;
+						this.couleur = (i + j) % 2 == 0
+								? Couleur.Blanc
+								: Couleur.Noir; 
+				}
 
-            // 2. Connecter newPiece à cette case
-        }
-    }
+
+				// methodes
+				public void Link(Piece newPiece)
+				{
+						// 1. Deconnecter newPiece de l'ancienne case
+
+						// 2. Connecter newPiece à cette case
+				}
+		}
 }
