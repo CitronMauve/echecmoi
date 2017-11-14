@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Echecs\Case.cs" />
+    <Compile Include="Echecs\Couleur.cs" />
+    <Compile Include="Echecs\Echiquier.cs" />
     <Compile Include="Echecs\Joueur.cs" />
     <Compile Include="Echecs\Partie.cs" />
     <Compile Include="Echecs\Piece.cs" />
