@@ -36,7 +36,7 @@ namespace TP2_Echecs.Echecs
         IEvenements _vue;
         Joueur blancs;
         Joueur noirs;
-        // Echiquier echiquier;  // TODO : décommentez lorsque vous auriez implementé la classe Echiquier
+        Echiquier echiquier;
 
 
         /* methodes */
