@@ -25,6 +25,19 @@ namespace TP2_Echecs.Echecs
             }
         }
 
+        internal Echiquier Echiquier
+        {
+            get
+            {
+                return echiquier;
+            }
+
+            set
+            {
+                echiquier = value;
+            }
+        }
+
 
         /* attributs */
 
