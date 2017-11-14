@@ -19,20 +19,30 @@ namespace TP2_Echecs.Echecs
             int diffRangee = destination.rangee - this.position.rangee;
             int i = 0;
 
-            if ((diffColonne == 0 && diffRangee != 0) ||
-                (diffColonne != 0 && diffRangee == 0))
+            if (diffColonne != 0 && diffRangee == 0)
             {
                 while (Math.Abs(diffColonne) != i)
                 {
-                    if (joueur.partie.Echiquier.cases[i + this.position.rangee, i + this.position.colonne] != null)
+                    if (joueur.partie.Echiquier.cases[this.position.rangee, i + this.position.colonne] != null)
                     {
                         return false;
                     }
                     ++i;
                 }
-                return true;
             }
-            return false;
+
+            if (diffColonne == 0 && diffRangee != 0)
+            {
+                while (Math.Abs(diffRangee) != i)
+                {
+                    if (joueur.partie.Echiquier.cases[this.position.rangee, this.position.colonne] != null)
+                    {
+                        return false;
+                    }
+                    ++i;
+                }
+            }
+            return true;
         }
     }
 }
