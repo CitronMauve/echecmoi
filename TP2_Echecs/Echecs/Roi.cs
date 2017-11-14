@@ -9,7 +9,7 @@ namespace TP2_Echecs.Echecs
 {
     class Roi : Piece
     {
-        public Roi(Joueur joueur, TypePiece type) : base(joueur, type)
+        public Roi(Joueur joueur) : base(joueur, TypePiece.Roi)
         {
         }
 

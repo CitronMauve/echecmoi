@@ -23,7 +23,20 @@ namespace TP2_Echecs.Echecs
             this.partie = partie;
 
             // TODO : creation des pieces du joueur
-            pieces.Add( new Dame(this) );
+            pieces.Add(new Roi(this));
+            pieces.Add(new Dame(this));
+
+            for (int i = 0; i < 8; ++i)
+            {
+                pieces.Add(new Pion(this));
+            }
+
+            for (int i = 0; i < 2; ++i)
+            {
+                pieces.Add(new Tour(this));
+                pieces.Add(new Fou(this));
+                pieces.Add(new Cavalier(this));
+            }
         }
 
         // TODO : décommentez lorsque vous auriez implementé les methode Unlink et Link de la classe Case

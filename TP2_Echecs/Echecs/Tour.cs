@@ -9,7 +9,7 @@ namespace TP2_Echecs.Echecs
 {
     class Tour : Piece
     {
-        public Tour(Joueur joueur, TypePiece type) : base(joueur, type)
+        public Tour(Joueur joueur) : base(joueur, TypePiece.Tour)
         {
         }
 
