@@ -9,7 +9,7 @@ namespace TP2_Echecs.Echecs
 {
     class Pion : Piece
     {
-        public Pion(Joueur joueur, TypePiece type) : base(joueur, type)
+        public Pion(Joueur joueur) : base(joueur, TypePiece.Pion)
         {
         }
 

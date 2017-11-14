@@ -9,7 +9,7 @@ namespace TP2_Echecs.Echecs
 {
     class Cavalier : Piece
     {
-        public Cavalier(Joueur joueur, TypePiece type) : base(joueur, type)
+        public Cavalier(Joueur joueur) : base(joueur, TypePiece.Cavalier)
         {
         }
 
