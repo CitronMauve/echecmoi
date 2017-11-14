@@ -10,7 +10,6 @@ namespace TP2_Echecs.Echecs
 		public class Case
 		{
 				// attributs
-				enum Couleur { Blanc, Noir };
 				int rangee, colonne;
                 Couleur couleur;
 
