@@ -15,7 +15,7 @@ namespace TP2_Echecs.Echecs
 
         public override bool Deplacer(Case destination)
         {
-            destination.Link(this);
+            bool result = false;
 
             int diffColonne = Math.Abs(destination.colonne - this.position.colonne);
             int diffRangee = Math.Abs(destination.rangee - this.position.rangee);
@@ -23,10 +23,16 @@ namespace TP2_Echecs.Echecs
             if (diffColonne == 2 && diffRangee == 1 ||
                 diffRangee == 1 && diffColonne == 2)
             {
-                return true;
+                result = true;
             }
 
-            return false;
+            if (result)
+            {
+                destination.Link(this);
+                this.position.Unlink();
+            }
+
+            return result;
         }
     }
 }

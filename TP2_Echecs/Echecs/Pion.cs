@@ -16,7 +16,7 @@ namespace TP2_Echecs.Echecs
 
         public override bool Deplacer(Case destination)
         {
-            destination.Link(this);
+            bool result = false;
 
             int diffRangee = destination.rangee - this.position.rangee;
             int diffColonne = destination.colonne - this.position.colonne;
@@ -24,22 +24,29 @@ namespace TP2_Echecs.Echecs
             if (diffColonne != 0) {
                 if (premierDeplacement && diffRangee <= 2)
                 {
-                    return destination.pieceActuelle == null;
+                    result = destination.pieceActuelle == null;
                 }
                 if (diffRangee == 1)
                 {
-                    return destination.pieceActuelle == null;
+                    result = destination.pieceActuelle == null;
                 }
             }
 
             if (diffRangee == 1 && diffColonne == 1)
             {
-                return destination.pieceActuelle != null;
+                result = destination.pieceActuelle != null;
             }
 
             if (premierDeplacement) premierDeplacement = false;
 
-            return false;
+
+            if (result)
+            {
+                destination.Link(this);
+                this.position.Unlink();
+            }
+
+            return result;
         }
     }
 }
