@@ -22,7 +22,6 @@ namespace TP2_Echecs.Echecs
             if (diffColonne != 0) {
                 if (premierDeplacement && diffRangee <= 2)
                 {
-                    premierDeplacement = false;
                     return destination.pieceActuelle == null;
                 }
                 if (diffRangee == 1)
@@ -35,6 +34,9 @@ namespace TP2_Echecs.Echecs
             {
                 return destination.pieceActuelle != null;
             }
+
+            if (premierDeplacement) premierDeplacement = false;
+
             return false;
         }
     }
