@@ -15,10 +15,28 @@ namespace TP2_Echecs.Echecs
 
         public override bool Deplacer(Case destination)
         {
+
             int diffColonne = Math.Abs(destination.colonne - this.position.colonne);
             int diffRangee = Math.Abs(destination.rangee - this.position.rangee);
 
-            return diffColonne == 1 && diffRangee == 1;            
+            // May not work
+            if (diffColonne <= 1 && diffRangee <= 1)
+            {
+                destination.Link(this);
+                this.position.Unlink();
+                return true;
+            }
+
+            /*
+            if (diffColonne == 1 && diffRangee == 1 ||
+                diffColonne == 1 && diffRangee == 0 ||
+                diffColonne == 0 && diffRangee == 1) {
+            }
+            */
+
+            /* TODO: ROQUE */
+
+            return false;            
         }
     }
 }
