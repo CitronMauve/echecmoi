@@ -25,7 +25,7 @@ namespace TP2_Echecs.Echecs
             {
                 while (Math.Abs(diffColonne) != i)
                 {
-                    if (joueur.partie.Echiquier.cases[this.position.rangee, i + this.position.colonne] != null)
+                    if (joueur.partie.echiquier.cases[this.position.rangee, i + this.position.colonne] != null)
                     {
                         return false;
                     }
@@ -37,7 +37,7 @@ namespace TP2_Echecs.Echecs
             {
                 while (Math.Abs(diffRangee) != i)
                 {
-                    if (joueur.partie.Echiquier.cases[this.position.rangee, this.position.colonne] != null)
+                    if (joueur.partie.echiquier.cases[this.position.rangee, this.position.colonne] != null)
                     {
                         return false;
                     }
