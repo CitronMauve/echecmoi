@@ -24,21 +24,7 @@ namespace TP2_Echecs.Echecs
                 vue.ActualiserPartie(_status);
             }
         }
-
-        internal Echiquier Echiquier
-        {
-            get
-            {
-                return echiquier;
-            }
-
-            set
-            {
-                echiquier = value;
-            }
-        }
-
-
+       
         /* attributs */
 
         StatusPartie _status = StatusPartie.Reset;
@@ -64,8 +50,8 @@ namespace TP2_Echecs.Echecs
             //echiquier = new Echiquier(this);
 
             // placement des pieces
-            //blancs.PlacerPieces(echiquier);  // TODO : décommentez lorsque vous auriez implementé les methode Unlink et Link de la classe Case
-            // noirs.PlacerPieces(echiquier);  // TODO : décommentez lorsque vous auriez implementé les methode Unlink et Link de la classe Case
+            blancs.PlacerPieces(echiquier);  // TODO : décommentez lorsque vous auriez implementé les methode Unlink et Link de la classe Case
+            noirs.PlacerPieces(echiquier);  // TODO : décommentez lorsque vous auriez implementé les methode Unlink et Link de la classe Case
 
             /* TEST */
             vue.ActualiserCase(4, 0, InfoPiece.RoiNoir);

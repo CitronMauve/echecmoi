@@ -40,16 +40,16 @@ namespace TP2_Echecs.Echecs
         }
 
         // TODO : décommentez lorsque vous auriez implementé les methode Unlink et Link de la classe Case
-        //public void PlacerPieces(Echiquier echiquier)
-        //{
-        //    if( couleur == CouleurCamp.Noire )
-        //    {
-        //        echiquier.cases[3, 0].Link( pieces[0] );
-        //    }
-        //    else
-        //    {
-        //        echiquier.cases[3, 7].Link( pieces[0] );
-        //    }
-        //}
+        public void PlacerPieces(Echiquier echiquier)
+        {
+            if( couleur == CouleurCamp.Noire )
+            {
+                echiquier.cases[3, 0].Link( pieces[0] );
+            }
+            else
+            {
+                echiquier.cases[3, 7].Link( pieces[0] );
+            }
+        }
     }
 }

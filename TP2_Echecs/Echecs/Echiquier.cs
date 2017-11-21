@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TP2_Echecs.Echecs
 {
-    class Echiquier
+    public class Echiquier
     {
         const int NB_CASES = 8;
         public Case[,] cases = new Case[NB_CASES, NB_CASES];
