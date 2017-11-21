@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TP2_Echecs.IHM;
 
 namespace TP2_Echecs.Echecs
@@ -15,6 +11,8 @@ namespace TP2_Echecs.Echecs
 
         public override bool Deplacer(Case destination)
         {
+            if (DeplacerSurAllie(destination)) return false;
+
             bool result = false;
 
             int diffColonne = destination.colonne - this.position.colonne;
@@ -34,9 +32,12 @@ namespace TP2_Echecs.Echecs
                 result = true;
             }
 
-
             if (result)
             {
+                if (destination.pieceActuelle != null)
+                {
+                    destination.Unlink();
+                }
                 destination.Link(this);
                 this.position.Unlink();
             }

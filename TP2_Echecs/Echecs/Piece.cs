@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TP2_Echecs.IHM;
+﻿using TP2_Echecs.IHM;
 
 namespace TP2_Echecs.Echecs
 {
@@ -24,5 +19,10 @@ namespace TP2_Echecs.Echecs
         }
 
         public abstract bool Deplacer(Case destination);
+
+        public bool DeplacerSurAllie(Case destination)
+        {
+            return destination.pieceActuelle.joueur == this.joueur;
+        }
     }
 }

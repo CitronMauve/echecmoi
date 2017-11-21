@@ -15,6 +15,8 @@ namespace TP2_Echecs.Echecs
 
         public override bool Deplacer(Case destination)
         {
+            if (DeplacerSurAllie(destination)) return false;
+
             bool result = false;
 
             int diffColonne = Math.Abs(destination.colonne - this.position.colonne);

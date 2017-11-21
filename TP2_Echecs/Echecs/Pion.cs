@@ -16,6 +16,8 @@ namespace TP2_Echecs.Echecs
 
         public override bool Deplacer(Case destination)
         {
+            if (DeplacerSurAllie(destination)) return false;
+
             bool result = false;
 
             int diffRangee = destination.rangee - this.position.rangee;
