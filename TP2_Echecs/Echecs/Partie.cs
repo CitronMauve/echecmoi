@@ -36,6 +36,7 @@ namespace TP2_Echecs.Echecs
         Joueur blancs;
         Joueur noirs;
         public Echiquier echiquier;
+		int nombreCoups;
 
 
         /* methodes */
@@ -58,6 +59,8 @@ namespace TP2_Echecs.Echecs
 			foreach (Piece piece in noirs.pieces)
 				vue.ActualiserCase(piece.position.rangee, piece.position.colonne, piece.info);
 
+			nombreCoups = 0;
+
 			// initialisation de l'état
 			status = StatusPartie.TraitBlancs;         
         }
@@ -76,14 +79,31 @@ namespace TP2_Echecs.Echecs
 			// changer d'état
 			if (ok)
 			{
+				String moveOrTake = destination.pieceActuelle != null ? "x" : "-";
+
 				destination.Unlink();
 				destination.Link(depart.pieceActuelle);
 				destination.pieceActuelle.position = destination;
+
+				String promotion = depart.pieceActuelle.info.type == TypePiece.Pion && 
+					destination.pieceActuelle.info.type != TypePiece.Pion ? 
+						destination.pieceActuelle.info.type.ToString()[0].ToString() : 
+						"";
 
 				depart.Unlink();
 
 				vue.ActualiserCase(destination.rangee, destination.colonne, destination.pieceActuelle.info);
 				vue.ActualiserCase(depart.rangee, depart.colonne, null);
+
+				nombreCoups++;
+				String movement;
+
+				String piece = destination.pieceActuelle.info.type == TypePiece.Pion ? "" : destination.pieceActuelle.info.type.ToString()[0].ToString();
+
+				// Notation algébrique
+				movement = piece + depart.ToString() + moveOrTake + destination.ToString() + promotion;
+				vue.ActualiserHistorique(nombreCoups, movement);
+
 				ChangerEtat();
 			}
         }

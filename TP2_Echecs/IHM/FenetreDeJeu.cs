@@ -121,16 +121,21 @@ namespace TP2_Echecs.IHM
             // actualiser les etiquettes des chronomètres
             RenderClockLabels(status);
 
-            // demarrer/arreter le timer de l'IHM
-            if (status.etat == EtatPartie.Reset || status.etat == EtatPartie.Mat)
-                timer.Stop();
-            else
-            {
-                if( !timer.Enabled )
-                    timer.Start();
-            }
+			// demarrer/arreter le timer de l'IHM
+			if (status.etat == EtatPartie.Reset || status.etat == EtatPartie.Mat)
+				timer.Stop();
+			else {
+				if (!timer.Enabled)
+					timer.Start();
+			}
                 
         }
+
+		public void ActualiserHistorique(int nombreCoups, String movement) {
+			string[] row = { nombreCoups.ToString(), SpanToString(tempsBlancs.Elapsed + tempsNoirs.Elapsed), movement};
+			var listViewItem = new ListViewItem(row);
+			lvwMoveHistory.Items.Add(listViewItem);
+		}
 
         #endregion
 
@@ -336,7 +341,7 @@ namespace TP2_Echecs.IHM
             lblBlackClock.Text = SpanToString(tempsNoirs.Elapsed);
             lblWhiteClock.Refresh();
             lblBlackClock.Refresh();
-        }
+		}
 
         void RenderClockLabels(StatusPartie status)
         {
