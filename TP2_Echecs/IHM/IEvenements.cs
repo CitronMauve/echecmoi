@@ -15,7 +15,7 @@ namespace TP2_Echecs.IHM
 
         void ActualiserCaptures(List<InfoPiece> pieces);
 
-		void ActualiserHistorique(int nombreCoups);
+		void ActualiserHistorique(int nombreCoups, String movement);
     }
 
      public enum EtatPartie {

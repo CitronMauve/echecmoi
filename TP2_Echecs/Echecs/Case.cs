@@ -37,5 +37,9 @@ namespace TP2_Echecs.Echecs
             // 1. Deconnecter newPiece de l'ancienne case
             this.pieceActuelle = null;
         }
+
+		public String ToString() {
+			return ((char) (this.rangee + 97)) + (8 - this.colonne).ToString();
+		}
     }
 }

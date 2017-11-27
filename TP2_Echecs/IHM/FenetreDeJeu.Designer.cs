@@ -80,7 +80,6 @@
 			this.comboBlack = new System.Windows.Forms.ComboBox();
 			this.lblBlackPoints = new System.Windows.Forms.Label();
 			this.lblWhiteClock = new System.Windows.Forms.Label();
-			this.lblTotalClock = new System.Windows.Forms.Label();
 			this.lblWhitePosition = new System.Windows.Forms.Label();
 			this.lblWhiteScore = new System.Windows.Forms.Label();
 			this.comboWhite = new System.Windows.Forms.ComboBox();
@@ -287,7 +286,6 @@
 			this.pnlMain.Controls.Add(this.comboBlack);
 			this.pnlMain.Controls.Add(this.lblBlackPoints);
 			this.pnlMain.Controls.Add(this.lblWhiteClock);
-			this.pnlMain.Controls.Add(this.lblTotalClock);
 			this.pnlMain.Controls.Add(this.lblWhitePosition);
 			this.pnlMain.Controls.Add(this.lblWhiteScore);
 			this.pnlMain.Controls.Add(this.comboWhite);
@@ -631,19 +629,6 @@
 			this.lblWhiteClock.Text = ":";
 			this.lblWhiteClock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// lblTotalClock
-			// 
-			this.lblTotalClock.BackColor = System.Drawing.Color.Transparent;
-			this.lblTotalClock.CausesValidation = false;
-			this.lblTotalClock.ForeColor = System.Drawing.Color.Black;
-			this.lblTotalClock.Location = new System.Drawing.Point(448, 64);
-			this.lblTotalClock.Name = "lblTotalClock";
-			this.lblTotalClock.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.lblTotalClock.Size = new System.Drawing.Size(96, 23);
-			this.lblTotalClock.TabIndex = 124;
-			this.lblTotalClock.Text = ":";
-			this.lblTotalClock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
 			// lblWhitePosition
 			// 
 			this.lblWhitePosition.BackColor = System.Drawing.Color.Transparent;
@@ -866,7 +851,6 @@
         private System.Windows.Forms.ComboBox comboBlack;
         private System.Windows.Forms.Label lblBlackPoints;
         private System.Windows.Forms.Label lblWhiteClock;
-		private System.Windows.Forms.Label lblTotalClock;
 		private System.Windows.Forms.Label lblWhitePosition;
         private System.Windows.Forms.Label lblWhiteScore;
         private System.Windows.Forms.ComboBox comboWhite;

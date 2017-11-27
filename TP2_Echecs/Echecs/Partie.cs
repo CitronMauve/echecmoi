@@ -79,9 +79,16 @@ namespace TP2_Echecs.Echecs
 			// changer d'état
 			if (ok)
 			{
+				String moveOrTake = destination.pieceActuelle != null ? "x" : "-";
+
 				destination.Unlink();
 				destination.Link(depart.pieceActuelle);
 				destination.pieceActuelle.position = destination;
+
+				String promotion = depart.pieceActuelle.info.type == TypePiece.Pion && 
+					destination.pieceActuelle.info.type != TypePiece.Pion ? 
+						destination.pieceActuelle.info.type.ToString()[0].ToString() : 
+						"";
 
 				depart.Unlink();
 
@@ -89,7 +96,13 @@ namespace TP2_Echecs.Echecs
 				vue.ActualiserCase(depart.rangee, depart.colonne, null);
 
 				nombreCoups++;
-				vue.ActualiserHistorique(nombreCoups);
+				String movement;
+
+				String piece = destination.pieceActuelle.info.type == TypePiece.Pion ? "" : destination.pieceActuelle.info.type.ToString()[0].ToString();
+
+				// Notation algébrique
+				movement = piece + depart.ToString() + moveOrTake + destination.ToString() + promotion;
+				vue.ActualiserHistorique(nombreCoups, movement);
 
 				ChangerEtat();
 			}

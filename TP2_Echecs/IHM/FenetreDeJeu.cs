@@ -131,7 +131,10 @@ namespace TP2_Echecs.IHM
                 
         }
 
-		public void ActualiserHistorique(int nombreCoups) {
+		public void ActualiserHistorique(int nombreCoups, String movement) {
+			string[] row = { nombreCoups.ToString(), SpanToString(tempsBlancs.Elapsed + tempsNoirs.Elapsed), movement};
+			var listViewItem = new ListViewItem(row);
+			lvwMoveHistory.Items.Add(listViewItem);
 		}
 
         #endregion
@@ -336,10 +339,8 @@ namespace TP2_Echecs.IHM
         {
             lblWhiteClock.Text = SpanToString(tempsBlancs.Elapsed);
             lblBlackClock.Text = SpanToString(tempsNoirs.Elapsed);
-			lblTotalClock.Text = SpanToString(tempsBlancs.Elapsed + tempsNoirs.Elapsed);
             lblWhiteClock.Refresh();
             lblBlackClock.Refresh();
-			lblTotalClock.Refresh();
 		}
 
         void RenderClockLabels(StatusPartie status)
