@@ -99,7 +99,10 @@ namespace TP2_Echecs.IHM
                 else
                     captures_blancs[idx_blancs++].Image = piecesNoires[(int)p.type];
             }
-        }
+
+			lblWhitesCaptures.Text = idx_blancs.ToString();
+			lblBlacksCaptures.Text = idx_noirs.ToString();
+		}
 
         public void ActualiserPartie(StatusPartie status)
         {

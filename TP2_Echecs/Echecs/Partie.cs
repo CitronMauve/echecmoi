@@ -36,12 +36,15 @@ namespace TP2_Echecs.Echecs
         Joueur blancs;
         Joueur noirs;
         public Echiquier echiquier;
+
 		int nombreCoups;
 
+		List<InfoPiece> piecesPerdues;
 
-        /* methodes */
 
-        public void CommencerPartie()
+		/* methodes */
+
+		public void CommencerPartie()
         {
             // creation des joueurs
             blancs = new Joueur(this, CouleurCamp.Blanche);
@@ -60,6 +63,8 @@ namespace TP2_Echecs.Echecs
 				vue.ActualiserCase(piece.position.rangee, piece.position.colonne, piece.info);
 
 			nombreCoups = 0;
+
+			piecesPerdues = new List<InfoPiece>();
 
 			// initialisation de l'état
 			status = StatusPartie.TraitBlancs;         
@@ -82,6 +87,10 @@ namespace TP2_Echecs.Echecs
 				// Is it a simple move or a piece has been eaten
 				String moveOrTake = destination.pieceActuelle != null ? "x" : "-";
 
+				if (destination.pieceActuelle != null) {
+					piecesPerdues.Add(destination.pieceActuelle.info);
+				}
+
 				destination.Unlink();
 				destination.Link(depart.pieceActuelle);
 				destination.pieceActuelle.position = destination;
@@ -101,9 +110,11 @@ namespace TP2_Echecs.Echecs
 				nombreCoups++;
 				// Name of the Piece that moved, if it was a Pawn, it is not logged
 				String piece = destination.pieceActuelle.info.type == TypePiece.Pion ? "" : destination.pieceActuelle.info.type.ToString()[0].ToString();
-				// Algebraic notation
+				// Standard Algebraic Notation (SAN)
 				String movement = piece + depart.ToString() + moveOrTake + destination.ToString() + promotion;
 				vue.ActualiserHistorique(nombreCoups, movement);
+
+				vue.ActualiserCaptures(piecesPerdues);
 
 				ChangerEtat();
 			}
