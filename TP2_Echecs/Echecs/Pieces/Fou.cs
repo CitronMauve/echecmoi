@@ -13,34 +13,42 @@ namespace TP2_Echecs.Echecs
         {
             if (DeplacerSurAllie(destination)) return false;
 
-            bool result = false;
+			bool result = false;
+			
+			int diffColonne = destination.colonne - this.position.colonne;
+			int diffRangee = destination.rangee - this.position.rangee;
+			int rangeeToCheck = this.position.rangee;
+			int colonneToCheck = this.position.colonne;
+			int i = 0;
 
-            int diffColonne = destination.colonne - this.position.colonne;
-            int diffRangee = destination.rangee - this.position.rangee;
-            int i = 0;
+			if (Math.Abs(diffColonne) == Math.Abs(diffRangee)) {
+				do {
+					if (diffRangee < 0) {
+						--rangeeToCheck;
+					} else if (diffRangee > 0) {
+						++rangeeToCheck;
+					}
 
-            if (diffColonne == diffRangee)
-            {
-                while(Math.Abs(diffColonne) != i)
-                {
-                    if (joueur.partie.echiquier.cases[i + this.position.rangee, i + this.position.colonne] != null)
-                    {
-                        return false;
-                    }
-                    ++i;
-                }
-                result = true;
-            }
+					if (diffColonne < 0) {
+						--colonneToCheck;
 
-            if (result)
-            {
-                if (destination.pieceActuelle != null)
-                {
-                    destination.Unlink();
-                }
-                destination.Link(this);
-                this.position.Unlink();
-            }
+					} else if (diffColonne > 0) {
+						++colonneToCheck;
+					}
+
+					if (joueur.partie.echiquier.cases[rangeeToCheck, colonneToCheck].pieceActuelle == null) {
+						result = true;
+					}
+
+					++i;
+				} while (result && i < Math.Abs(diffColonne));
+			}
+
+			if (i == Math.Abs(diffColonne)) {
+				Piece pieceActuelle = joueur.partie.echiquier.cases[destination.rangee, destination.colonne].pieceActuelle;
+
+				result = (null == pieceActuelle || pieceActuelle.joueur != this.joueur);
+			}
 
             return result;
         }
