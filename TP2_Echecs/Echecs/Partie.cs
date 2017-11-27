@@ -47,7 +47,7 @@ namespace TP2_Echecs.Echecs
             noirs = new Joueur(this, CouleurCamp.Noire);
 
             // creation de l'echiquier
-            //echiquier = new Echiquier(this);
+            echiquier = new Echiquier(this);
 
             // placement des pieces
             blancs.PlacerPieces(echiquier);  // TODO : décommentez lorsque vous auriez implementé les methode Unlink et Link de la classe Case
@@ -55,11 +55,22 @@ namespace TP2_Echecs.Echecs
 
             /* TEST */
             vue.ActualiserCase(4, 0, InfoPiece.RoiNoir);
-            vue.ActualiserCase(4, 7, InfoPiece.RoiBlanc);
-            /* FIN TEST */
+			vue.ActualiserCase(4, 1, InfoPiece.PionNoir);
+			vue.ActualiserCase(4, 7, InfoPiece.RoiBlanc);
+			vue.ActualiserCase(4, 0, InfoPiece.RoiNoir);
+			/* FIN TEST */
 
-            // initialisation de l'état
-            status = StatusPartie.TraitBlancs;         
+			foreach (Piece piece in blancs.pieces) {
+				vue.ActualiserCase(piece.position.rangee, piece.position.colonne, piece.info);
+			}
+
+			foreach (Piece piece in noirs.pieces)
+			{
+				vue.ActualiserCase(piece.position.rangee, piece.position.colonne, piece.info);
+			}
+
+			// initialisation de l'état
+			status = StatusPartie.TraitBlancs;         
         }
 
         public void DeplacerPiece(int x_depart, int y_depart, int x_arrivee, int y_arrivee)

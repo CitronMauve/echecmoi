@@ -10,9 +10,12 @@ namespace TP2_Echecs.Echecs
     {
         const int NB_CASES = 8;
         public Case[,] cases = new Case[NB_CASES, NB_CASES];
+		public Partie partie;
 
-        public Echiquier()
+        public Echiquier(Partie partie)
         {
+			this.partie = partie;
+
             for(int i = 0; i < NB_CASES; ++i)
             {
                 for(int j = 0; j < NB_CASES; ++j)

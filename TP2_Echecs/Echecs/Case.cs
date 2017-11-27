@@ -32,6 +32,7 @@ namespace TP2_Echecs.Echecs
 	    {
             // 2. Connecter newPiece à cette case
             this.pieceActuelle = newPiece;
+			newPiece.position = this;
 	    }
 
         public void Unlink()
