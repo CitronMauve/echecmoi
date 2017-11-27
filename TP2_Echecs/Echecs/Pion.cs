@@ -28,8 +28,19 @@ namespace TP2_Echecs.Echecs
 					destination.colonne - this.position.colonne == -1)
 				{
 					// Check if an ennemi is present when moving from anoter column
+					/*
 					if ((Math.Abs(destination.rangee - this.position.rangee) == 1 && DeplacerSurEnnemi(destination)) ||
 						(destination.rangee - this.position.rangee == 0 && !DeplacerSurEnnemi(destination)))
+					{
+						result = true;
+					}
+					*/
+					// Normal movement expected from a Pion: no enemy
+					if (destination.rangee - this.position.rangee == 0 && !DeplacerSurEnnemi(destination))
+					{
+						result = true;
+					// Movement with an enemy
+					} else if (Math.Abs(destination.rangee - this.position.rangee) == 1 && DeplacerSurEnnemi(destination))
 					{
 						result = true;
 					}
