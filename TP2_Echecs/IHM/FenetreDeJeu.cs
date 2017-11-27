@@ -121,14 +121,13 @@ namespace TP2_Echecs.IHM
             // actualiser les etiquettes des chronomètres
             RenderClockLabels(status);
 
-            // demarrer/arreter le timer de l'IHM
-            if (status.etat == EtatPartie.Reset || status.etat == EtatPartie.Mat)
-                timer.Stop();
-            else
-            {
-                if( !timer.Enabled )
-                    timer.Start();
-            }
+			// demarrer/arreter le timer de l'IHM
+			if (status.etat == EtatPartie.Reset || status.etat == EtatPartie.Mat)
+				timer.Stop();
+			else {
+				if (!timer.Enabled)
+					timer.Start();
+			}
                 
         }
 
@@ -337,9 +336,11 @@ namespace TP2_Echecs.IHM
         {
             lblWhiteClock.Text = SpanToString(tempsBlancs.Elapsed);
             lblBlackClock.Text = SpanToString(tempsNoirs.Elapsed);
+			lblTotalClock.Text = SpanToString(tempsBlancs.Elapsed + tempsNoirs.Elapsed);
             lblWhiteClock.Refresh();
             lblBlackClock.Refresh();
-        }
+			lblTotalClock.Refresh();
+		}
 
         void RenderClockLabels(StatusPartie status)
         {
