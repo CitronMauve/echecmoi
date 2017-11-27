@@ -46,12 +46,12 @@ namespace TP2_Echecs.Echecs
 			{
 				// Tours
 				echiquier.cases[0, 0].Link(pieces[10]);
-				echiquier.cases[7, 0].Link(pieces[11]);
+				echiquier.cases[7, 0].Link(pieces[13]);
 				// Cavaliers
-				echiquier.cases[1, 0].Link(pieces[12]);
-				echiquier.cases[6, 0].Link(pieces[13]);
+				echiquier.cases[1, 0].Link(pieces[14]);
+				echiquier.cases[6, 0].Link(pieces[11]);
 				// Fous
-				echiquier.cases[2, 0].Link(pieces[14]);
+				echiquier.cases[2, 0].Link(pieces[12]);
 				echiquier.cases[5, 0].Link(pieces[15]);
 				// Roi
 				echiquier.cases[4, 0].Link(pieces[0]);
@@ -67,12 +67,12 @@ namespace TP2_Echecs.Echecs
 			{
 				// Tours
 				echiquier.cases[0, 7].Link(pieces[10]);
-				echiquier.cases[7, 7].Link(pieces[11]);
+				echiquier.cases[7, 7].Link(pieces[13]);
 				// Cavaliers
-				echiquier.cases[1, 7].Link(pieces[12]);
-				echiquier.cases[6, 7].Link(pieces[13]);
+				echiquier.cases[1, 7].Link(pieces[14]);
+				echiquier.cases[6, 7].Link(pieces[11]);
 				// Fous
-				echiquier.cases[2, 7].Link(pieces[14]);
+				echiquier.cases[2, 7].Link(pieces[12]);
 				echiquier.cases[5, 7].Link(pieces[15]);
 				// Roi
 				echiquier.cases[4, 7].Link(pieces[0]);
