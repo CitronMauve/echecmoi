@@ -132,6 +132,9 @@ namespace TP2_Echecs.IHM
                 
         }
 
+		public void ActualiserHistorique(int nombreCoups) {
+		}
+
         #endregion
 
         #region Interface IJeu

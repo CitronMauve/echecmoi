@@ -36,6 +36,7 @@ namespace TP2_Echecs.Echecs
         Joueur blancs;
         Joueur noirs;
         public Echiquier echiquier;
+		int nombreCoups;
 
 
         /* methodes */
@@ -57,6 +58,8 @@ namespace TP2_Echecs.Echecs
 			noirs.PlacerPieces(echiquier);  // TODO : décommentez lorsque vous auriez implementé les methode Unlink et Link de la classe Case
 			foreach (Piece piece in noirs.pieces)
 				vue.ActualiserCase(piece.position.rangee, piece.position.colonne, piece.info);
+
+			nombreCoups = 0;
 
 			// initialisation de l'état
 			status = StatusPartie.TraitBlancs;         
@@ -84,6 +87,10 @@ namespace TP2_Echecs.Echecs
 
 				vue.ActualiserCase(destination.rangee, destination.colonne, destination.pieceActuelle.info);
 				vue.ActualiserCase(depart.rangee, depart.colonne, null);
+
+				nombreCoups++;
+				vue.ActualiserHistorique(nombreCoups);
+
 				ChangerEtat();
 			}
         }
