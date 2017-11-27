@@ -9,16 +9,17 @@ namespace TP2_Echecs.Echecs
 {
     public class Case
     {
-	    // attributs
-	    public int rangee, colonne;
+		// attributs
+		public int rangee; 
+		public int colonne;
         public Piece pieceActuelle;
 
 	    // associations
 
-	    public Case(int i, int j)
+	    public Case(int x, int y)
 	    {
-			this.rangee = i;
-			this.colonne = j;
+			this.rangee = x;
+			this.colonne = y;
             this.pieceActuelle = null;
 	    }
 

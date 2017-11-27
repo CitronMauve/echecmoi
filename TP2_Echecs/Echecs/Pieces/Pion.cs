@@ -20,10 +20,10 @@ namespace TP2_Echecs.Echecs {
 			// White side
 			if (this.info.couleur == CouleurCamp.Blanche) {
 				// Check if first move, if so allow distance 2
-				if ((destination.colonne - this.position.colonne == -2 && premierDeplacement) ||
+				if (premierDeplacementPossible(destination) ||
 					destination.colonne - this.position.colonne == -1) {
 					// Check if an ennemi is present when moving from anoter column
-					// Normal movement expected from a Pion: no enemy
+					// Normal movement expected from a Pion
 					if (destination.rangee - this.position.rangee == 0 && !DeplacerSurEnnemi(destination)) {
 						result = true;
 					} // Movement with an enemy
@@ -35,10 +35,10 @@ namespace TP2_Echecs.Echecs {
 			// Black side
 			else {
 				// Check if first move, if so allow distance 2
-				if ((destination.colonne - this.position.colonne == 2 && premierDeplacement) ||
+				if (premierDeplacementPossible(destination) ||
 					destination.colonne - this.position.colonne == 1) {
 					// Check if an ennemi is present when moving from anoter column
-					// Normal movement expected from a Pion: no enemy
+					// Normal movement expected from a Pion
 					if (destination.rangee - this.position.rangee == 0 && !DeplacerSurEnnemi(destination)) {
 						result = true;
 					}
@@ -51,6 +51,28 @@ namespace TP2_Echecs.Echecs {
 
 			if (this.premierDeplacement && result) {
 				this.premierDeplacement = false;
+			}
+
+			return result;
+		}
+
+		private bool premierDeplacementPossible(Case destination) {
+			bool result = false;
+
+			Case caseEnFace;
+
+			if (this.info.couleur == CouleurCamp.Blanche) {
+				caseEnFace = joueur.partie.echiquier.cases[this.position.rangee, this.position.colonne - 1];
+
+				result = premierDeplacement &&
+					destination.colonne - this.position.colonne == -2 &&
+					caseEnFace.pieceActuelle == null;
+			} else {
+				caseEnFace = joueur.partie.echiquier.cases[this.position.rangee, this.position.colonne + 1];
+
+				result = premierDeplacement &&
+					destination.colonne - this.position.colonne == 2 &&
+					caseEnFace.pieceActuelle == null;
 			}
 
 			return result;
