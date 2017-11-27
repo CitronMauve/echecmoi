@@ -29,7 +29,8 @@ namespace TP2_Echecs.Echecs
 				{
 					// Check if an ennemi is present when moving from anoter column
 					if ((Math.Abs(destination.rangee - this.position.rangee) == 1 && DeplacerSurEnnemi(destination)) ||
-						destination.rangee - this.position.rangee == 0) {
+						(destination.rangee - this.position.rangee == 0 && !DeplacerSurEnnemi(destination)))
+					{
 						result = true;
 					}
 				}
@@ -43,38 +44,20 @@ namespace TP2_Echecs.Echecs
 				{
 					// Check if an ennemi is present when moving from anoter column
 					if ((Math.Abs(destination.rangee - this.position.rangee) == 1 && DeplacerSurEnnemi(destination)) ||
-						destination.rangee - this.position.rangee == 0)
+						(destination.rangee - this.position.rangee == 0 && !DeplacerSurEnnemi(destination)))
 					{
 						result = true;
 					}
 				}
 			}
-			/*
-            int diffRangee = destination.rangee - this.position.rangee;
-            int diffColonne = destination.colonne - this.position.colonne;
-
-			// Déplacement simple: sans ennemi
-            if (diffColonne == 0) {
-                if (premierDeplacement && diffRangee <= 2)
-                {
-                    result = destination.pieceActuelle == null;
-                }
-                if (diffRangee == 1)
-                {
-                    result = destination.pieceActuelle == null;
-                }
-            }
-
-            if (diffRangee == 1 && diffColonne == 1)
+			if (this.premierDeplacement && result)
             {
-                result = destination.pieceActuelle != null;
-            }
-			*/
-			if (result)
-            {
+				this.premierDeplacement = false;
+				/*
                 destination.Link(this);
                 this.position.Unlink();
-				this.premierDeplacement = false;
+				this.position = destination;
+				*/
 			}
 			
 			return result;
