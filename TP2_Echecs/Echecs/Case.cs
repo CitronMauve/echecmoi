@@ -11,7 +11,7 @@ namespace TP2_Echecs.Echecs
     {
 	    // attributs
 	    public int rangee, colonne;
-        public Couleur couleur;
+        // public Couleur couleur;
         public Piece pieceActuelle;
 
 	    // associations
@@ -20,9 +20,11 @@ namespace TP2_Echecs.Echecs
 	    {
 			this.rangee = i;
 			this.colonne = j;
+			/*
 			this.couleur = (i + j) % 2 == 0
 					? Couleur.Blanc
 					: Couleur.Noir;
+			*/
             this.pieceActuelle = null;
 	    }
 
