@@ -23,7 +23,7 @@ namespace TP2_Echecs.Echecs
             int diffRangee = destination.rangee - this.position.rangee;
             int diffColonne = destination.colonne - this.position.colonne;
 
-            if (diffColonne != 0) {
+            if (diffColonne == 0) {
                 if (premierDeplacement && diffRangee <= 2)
                 {
                     result = destination.pieceActuelle == null;
@@ -34,7 +34,7 @@ namespace TP2_Echecs.Echecs
                 }
             }
 
-            if (diffRangee == 1 && diffColonne == 1)
+            if (diffRangee == 1 && diffColonne == 1 && premierDeplacement)
             {
                 result = destination.pieceActuelle != null;
             }
