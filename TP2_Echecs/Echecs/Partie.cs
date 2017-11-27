@@ -51,11 +51,11 @@ namespace TP2_Echecs.Echecs
 
             // placement des pieces
             blancs.PlacerPieces(echiquier);  // TODO : décommentez lorsque vous auriez implementé les methode Unlink et Link de la classe Case
-			foreach (Piece piece in noirs.pieces)
+			foreach (Piece piece in blancs.pieces)
 				vue.ActualiserCase(piece.position.rangee, piece.position.colonne, piece.info);
 
 			noirs.PlacerPieces(echiquier);  // TODO : décommentez lorsque vous auriez implementé les methode Unlink et Link de la classe Case
-			foreach (Piece piece in blancs.pieces)
+			foreach (Piece piece in noirs.pieces)
 				vue.ActualiserCase(piece.position.rangee, piece.position.colonne, piece.info);
 
 			// initialisation de l'état
@@ -64,23 +64,28 @@ namespace TP2_Echecs.Echecs
 
         public void DeplacerPiece(int x_depart, int y_depart, int x_arrivee, int y_arrivee)
         {
-            /* TEST */
-            vue.ActualiserCase(x_depart,  y_depart,  null);
-            vue.ActualiserCase(x_arrivee, y_arrivee, InfoPiece.RoiBlanc);
-            /* FIN TEST */
-
             // case de départ
-            //Case depart = echiquier.cases[x_depart, y_depart];
+            Case depart = echiquier.cases[x_depart, y_depart];
 
             // case d'arrivée
-            //Case destination = echiquier.cases[x_arrivee, y_arrivee];
+            Case destination = echiquier.cases[x_arrivee, y_arrivee];
 
             // deplacer
-            //bool ok = depart.piece.Deplacer(destination);
+            bool ok = depart.pieceActuelle.Deplacer(destination);
 
-            // changer d'état
-            //if (ok)
-            //    ChangerEtat();
+			// changer d'état
+			if (ok)
+			{
+				destination.Unlink();
+				destination.Link(depart.pieceActuelle);
+				destination.pieceActuelle.position = destination;
+
+				depart.Unlink();
+
+				vue.ActualiserCase(destination.rangee, destination.colonne, destination.pieceActuelle.info);
+				vue.ActualiserCase(depart.rangee, depart.colonne, null);
+				ChangerEtat();
+			}
         }
 
         void ChangerEtat(bool echec = false, bool mat = false)
