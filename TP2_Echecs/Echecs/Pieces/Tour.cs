@@ -32,6 +32,11 @@ namespace TP2_Echecs.Echecs {
 
 					++i;
 				} while (result && i < Math.Abs(diffRangee));
+
+				// Check the case where the move is authorized but there is an enemy at the Destination
+				if (i == Math.Abs(diffRangee)) {
+					result = (null == joueur.partie.echiquier.cases[destination.rangee, destination.colonne].pieceActuelle || DeplacerSurEnnemi(destination));
+				}
 			} else if (diffColonne != 0 && diffRangee == 0) {
 				int colonneToCheck = this.position.colonne;
 				do {
@@ -46,6 +51,11 @@ namespace TP2_Echecs.Echecs {
 
 					++i;
 				} while (result && i < Math.Abs(diffColonne));
+
+				// Check the case where the move is authorized but there is an enemy at the Destination
+				if (i == Math.Abs(diffColonne)) {
+					result = (null == joueur.partie.echiquier.cases[destination.rangee, destination.colonne].pieceActuelle || DeplacerSurEnnemi(destination));
+				}
 			}
 
 			return result;
