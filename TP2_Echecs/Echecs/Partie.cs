@@ -51,23 +51,12 @@ namespace TP2_Echecs.Echecs
 
             // placement des pieces
             blancs.PlacerPieces(echiquier);  // TODO : décommentez lorsque vous auriez implementé les methode Unlink et Link de la classe Case
-            noirs.PlacerPieces(echiquier);  // TODO : décommentez lorsque vous auriez implementé les methode Unlink et Link de la classe Case
-
-            /* TEST */
-            vue.ActualiserCase(4, 0, InfoPiece.RoiNoir);
-			vue.ActualiserCase(4, 1, InfoPiece.PionNoir);
-			vue.ActualiserCase(4, 7, InfoPiece.RoiBlanc);
-			vue.ActualiserCase(4, 0, InfoPiece.RoiNoir);
-			/* FIN TEST */
-
-			foreach (Piece piece in blancs.pieces) {
-				vue.ActualiserCase(piece.position.rangee, piece.position.colonne, piece.info);
-			}
-
 			foreach (Piece piece in noirs.pieces)
-			{
 				vue.ActualiserCase(piece.position.rangee, piece.position.colonne, piece.info);
-			}
+
+			noirs.PlacerPieces(echiquier);  // TODO : décommentez lorsque vous auriez implementé les methode Unlink et Link de la classe Case
+			foreach (Piece piece in blancs.pieces)
+				vue.ActualiserCase(piece.position.rangee, piece.position.colonne, piece.info);
 
 			// initialisation de l'état
 			status = StatusPartie.TraitBlancs;         
