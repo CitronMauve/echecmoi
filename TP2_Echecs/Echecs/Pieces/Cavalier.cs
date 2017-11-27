@@ -23,15 +23,9 @@ namespace TP2_Echecs.Echecs
             int diffRangee = Math.Abs(destination.rangee - this.position.rangee);
 
             if (diffColonne == 2 && diffRangee == 1 ||
-                diffRangee == 1 && diffColonne == 2)
+                diffColonne == 1 && diffRangee == 2)
             {
                 result = true;
-            }
-
-            if (result)
-            {
-                destination.Link(this);
-                this.position.Unlink();
             }
 
             return result;
