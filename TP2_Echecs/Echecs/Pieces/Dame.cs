@@ -9,7 +9,7 @@ namespace TP2_Echecs.Echecs {
 			if (DeplacerSurAllie(destination)) return false;
 
 			bool result = false;
-			
+
 			int diffColonne = destination.colonne - this.position.colonne;
 			int diffRangee = destination.rangee - this.position.rangee;
 			int rangeeToCheck = this.position.rangee;
