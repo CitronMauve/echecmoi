@@ -22,7 +22,12 @@ namespace TP2_Echecs.Echecs
 
         public bool DeplacerSurAllie(Case destination)
         {
-            return destination.pieceActuelle.joueur == this.joueur;
+            return destination.pieceActuelle != null && destination.pieceActuelle.joueur.couleur == this.joueur.couleur;
         }
+
+		public bool DeplacerSurEnnemi(Case destination)
+		{
+			return destination.pieceActuelle != null && destination.pieceActuelle.joueur.couleur != this.joueur.couleur;
+		}
     }
 }
