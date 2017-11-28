@@ -7,6 +7,8 @@ namespace TP2_Echecs.Echecs
         // attributs
         public InfoPiece info;
 
+        public bool premierDeplacement = true;
+
         // associations
         public Joueur joueur;
         public Case position;

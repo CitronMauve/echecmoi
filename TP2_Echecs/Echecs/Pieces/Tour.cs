@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using TP2_Echecs.IHM;
 
 namespace TP2_Echecs.Echecs {
-	class Tour : Piece {
-		public Tour(Joueur joueur) : base(joueur, TypePiece.Tour) {
+	class Tour : Piece
+    {
+        public Tour(Joueur joueur) : base(joueur, TypePiece.Tour) {
 		}
 
 		public override bool Deplacer(Case destination) {
@@ -57,6 +58,11 @@ namespace TP2_Echecs.Echecs {
 					result = (null == joueur.partie.echiquier.cases[destination.rangee, destination.colonne].pieceActuelle || DeplacerSurEnnemi(destination));
 				}
 			}
+
+            if (this.premierDeplacement && result)  
+            {
+                this.premierDeplacement = false;
+            }
 
 			return result;
 		}

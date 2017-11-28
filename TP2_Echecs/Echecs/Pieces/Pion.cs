@@ -7,8 +7,6 @@ using TP2_Echecs.IHM;
 
 namespace TP2_Echecs.Echecs {
 	class Pion : Piece {
-		public bool premierDeplacement = true;
-
 		public Pion(Joueur joueur) : base(joueur, TypePiece.Pion) {
 		}
 

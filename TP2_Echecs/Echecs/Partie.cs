@@ -74,50 +74,96 @@ namespace TP2_Echecs.Echecs
         {
             // case de départ
             Case depart = echiquier.cases[x_depart, y_depart];
-
             // case d'arrivée
             Case destination = echiquier.cases[x_arrivee, y_arrivee];
-
             // deplacer
             bool ok = depart.pieceActuelle.Deplacer(destination);
 
 			// changer d'état
 			if (ok)
 			{
-				// Is it a simple move or a piece has been eaten
-				String moveOrTake = destination.pieceActuelle != null ? "x" : "-";
+                String movement;
 
-				if (destination.pieceActuelle != null) {
-					piecesPerdues.Add(destination.pieceActuelle.info);
-				}
+                // Roque
+                if (depart.pieceActuelle.GetType() == typeof(Roi) &&
+                    Math.Abs(depart.rangee - destination.rangee) == 2 && depart.colonne - destination.colonne == 0)
+                {
+                    destination.Link(depart.pieceActuelle);
+                    destination.pieceActuelle.position = destination;
+                    depart.Unlink();
+                    
+                    vue.ActualiserCase(destination.rangee, destination.colonne, destination.pieceActuelle.info);
+                    vue.ActualiserCase(depart.rangee, depart.colonne, null);
 
-				destination.Unlink();
-				destination.Link(depart.pieceActuelle);
-				destination.pieceActuelle.position = destination;
+                    // move tour
+                    Case tourDepart;
+                    int ancienneRangeeTour;
+                    int ancienneColonneTour = destination.colonne;
 
-				// Has a Pawn got a promotion ?
-				String promotion = depart.pieceActuelle.info.type == TypePiece.Pion && 
-					destination.pieceActuelle.info.type != TypePiece.Pion ? 
-						destination.pieceActuelle.info.type.ToString()[0].ToString() : 
-						"";
+                    int nouvelleRangeeTour;
+                    int nouvelleColonneTour = destination.colonne;
+                    Case tourDestination;
+                    if (destination.rangee - depart.rangee == 2)
+                    {
+                        ancienneRangeeTour = 7;
+                        nouvelleRangeeTour = 5;
+                        movement = "0-0";
+                    } else
+                    {
+                        ancienneRangeeTour = 0;
+                        nouvelleRangeeTour = 3;
+                        movement = "0-0-0";
+                    }
+                    tourDepart = echiquier.cases[ancienneRangeeTour, ancienneColonneTour];
+                    // tourDepart = new Case(ancienneRangeeTour, ancienneColonneTour);
+                    tourDestination = echiquier.cases[nouvelleRangeeTour, nouvelleColonneTour];
+                    // tourDestination  = new Case(nouvelleRangeeTour, nouvelleColonneTour);
 
-				depart.Unlink();
+                    tourDestination.Link(tourDepart.pieceActuelle);
+                    tourDestination.pieceActuelle.position = tourDestination;
+                    tourDepart.Unlink();
 
-				vue.ActualiserCase(destination.rangee, destination.colonne, destination.pieceActuelle.info);
-				vue.ActualiserCase(depart.rangee, depart.colonne, null);
+                    vue.ActualiserCase(tourDestination.rangee, tourDestination.colonne, tourDestination.pieceActuelle.info);
+                    vue.ActualiserCase(tourDepart.rangee, tourDepart.colonne, null);
 
-				// # of moves so far during this game
-				nombreCoups++;
-				// Name of the Piece that moved, if it was a Pawn, it is not logged
-				String piece = destination.pieceActuelle.info.type == TypePiece.Pion ? "" : destination.pieceActuelle.info.type.ToString()[0].ToString();
-				// Standard Algebraic Notation (SAN)
-				String movement = piece + depart.ToString() + moveOrTake + destination.ToString() + promotion;
-				vue.ActualiserHistorique(nombreCoups, movement);
+                    // # of moves so far during this game
+                    nombreCoups++;
+                } else {
 
-				vue.ActualiserCaptures(piecesPerdues);
+                    // Is it a simple move or a piece has been eaten
+                    String moveOrTake = destination.pieceActuelle != null ? "x" : "-";
 
-				ChangerEtat();
-			}
+                    // Actualiser Captures
+                    if (destination.pieceActuelle != null) {
+                        piecesPerdues.Add(destination.pieceActuelle.info);
+                    }
+
+                    destination.Unlink();
+                    destination.Link(depart.pieceActuelle);
+                    destination.pieceActuelle.position = destination;
+
+                    // Has a Pawn got a promotion ?
+                    String promotion = depart.pieceActuelle.info.type == TypePiece.Pion &&
+                        destination.pieceActuelle.info.type != TypePiece.Pion ?
+                            destination.pieceActuelle.info.type.ToString()[0].ToString() :
+                            "";
+
+                    depart.Unlink();
+
+                    vue.ActualiserCase(destination.rangee, destination.colonne, destination.pieceActuelle.info);
+                    vue.ActualiserCase(depart.rangee, depart.colonne, null);
+
+                    // # of moves so far during this game
+                    nombreCoups++;
+                    // Name of the Piece that moved, if it was a Pawn, it is not logged
+                    String piece = destination.pieceActuelle.info.type == TypePiece.Pion ? "" : destination.pieceActuelle.info.type.ToString()[0].ToString();
+                    // Standard Algebraic Notation (SAN)
+                    movement = piece + depart.ToString() + moveOrTake + destination.ToString() + promotion;
+                }
+                vue.ActualiserCaptures(piecesPerdues);
+                vue.ActualiserHistorique(nombreCoups, movement);
+                ChangerEtat();
+            }
         }
 
         void ChangerEtat(bool echec = false, bool mat = false)
