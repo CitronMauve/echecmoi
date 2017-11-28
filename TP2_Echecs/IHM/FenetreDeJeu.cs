@@ -423,11 +423,15 @@ namespace TP2_Echecs.IHM
 
                 case "ResumePlay":
                     status.paused = false;
-                    break;
+					tempsBlancs.Start();
+                    tempsNoirs.Start();
+					break;
 
                 case "PausePlay":
                     status.paused = true;
-                    break;
+					tempsBlancs.Stop();
+					tempsNoirs.Stop();
+					break;
             }
         }
 
