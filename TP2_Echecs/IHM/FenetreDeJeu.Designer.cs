@@ -187,9 +187,9 @@
 			this.tbrUndoMove.Name = "tbrUndoMove";
 			this.tbrUndoMove.Tag = "UndoMove";
 			this.tbrUndoMove.ToolTipText = "Undo the last move";
-			// 
-			// tbrResumePlay
-			// 
+            // 
+            // tbrResumePlay
+            // 
 			this.tbrResumePlay.ImageIndex = 8;
 			this.tbrResumePlay.Name = "tbrResumePlay";
 			this.tbrResumePlay.Tag = "ResumePlay";
@@ -197,7 +197,6 @@
 			// 
 			// tbrPausePlay
 			// 
-			this.tbrPausePlay.Enabled = false;
 			this.tbrPausePlay.ImageIndex = 9;
 			this.tbrPausePlay.Name = "tbrPausePlay";
 			this.tbrPausePlay.Tag = "PausePlay";
