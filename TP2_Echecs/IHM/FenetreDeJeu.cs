@@ -87,21 +87,30 @@ namespace TP2_Echecs.IHM
                 carreaux[x, y].Image = piecesNoires[(int)info.type];
         }
 
-        public void ActualiserCaptures(List<InfoPiece> pieces)
+        public void ActualiserCaptures(List<InfoPiece> pieces = null)
         {
-            int idx_noirs = 0;
-            int idx_blancs = 0;
+			if (pieces == null) {
+				for (int i = 0; i < CAPTURES; ++i) {
+					captures_blancs[i].Image = null;
+					captures_noirs[i].Image = null;
+				}
 
-            foreach (InfoPiece p in pieces)
-            {
-                if (p.couleur == CouleurCamp.Blanche)
-                    captures_noirs[idx_noirs++].Image = piecesBlanches[(int)p.type];
-                else
-                    captures_blancs[idx_blancs++].Image = piecesNoires[(int)p.type];
-            }
+				lblWhitesCaptures.Text = "0";
+				lblBlacksCaptures.Text = "0";
+			} else {
+				int idx_noirs = 0;
+				int idx_blancs = 0;
 
-			lblWhitesCaptures.Text = idx_blancs.ToString();
-			lblBlacksCaptures.Text = idx_noirs.ToString();
+				foreach (InfoPiece p in pieces) {
+					if (p.couleur == CouleurCamp.Blanche)
+						captures_noirs[idx_noirs++].Image = piecesBlanches[(int) p.type];
+					else
+						captures_blancs[idx_blancs++].Image = piecesNoires[(int) p.type];
+				}
+
+				lblWhitesCaptures.Text = idx_blancs.ToString();
+				lblBlacksCaptures.Text = idx_noirs.ToString();
+			}
 		}
 
         public void ActualiserPartie(StatusPartie status)
@@ -134,10 +143,14 @@ namespace TP2_Echecs.IHM
                 
         }
 
-		public void ActualiserHistorique(int nombreCoups, String movement) {
-			string[] row = { nombreCoups.ToString(), SpanToString(tempsBlancs.Elapsed + tempsNoirs.Elapsed), movement};
-			var listViewItem = new ListViewItem(row);
-			lvwMoveHistory.Items.Add(listViewItem);
+		public void ActualiserHistorique(int nombreCoups = 0, String movement = "") {
+			if (nombreCoups != 0 && !String.IsNullOrEmpty(movement)) {
+				string[] row = { nombreCoups.ToString(), SpanToString(tempsBlancs.Elapsed + tempsNoirs.Elapsed), movement };
+				var listViewItem = new ListViewItem(row);
+				lvwMoveHistory.Items.Add(listViewItem);
+			} else {
+				lvwMoveHistory.Items.Clear();
+			}
 		}
 
         #endregion
@@ -382,8 +395,18 @@ namespace TP2_Echecs.IHM
             switch (e.Button.Tag.ToString())
             {
                 case "New":
-                    jeu.CommencerPartie();
-                    break;
+					for (int i = 0; i < 8; ++i) {
+						for (int j = 0; j < 8; ++j) {
+							ActualiserCase(i, j, null);
+						}
+					}
+					jeu.CommencerPartie();
+					ActualiserCaptures();
+					ActualiserHistorique();
+					tempsBlancs.Reset();
+					tempsBlancs.Start();
+					tempsNoirs.Reset();
+					break;
 
                 case "Open":
                     // TODO

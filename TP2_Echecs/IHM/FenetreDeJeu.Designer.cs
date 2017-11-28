@@ -187,9 +187,9 @@
 			this.tbrUndoMove.Name = "tbrUndoMove";
 			this.tbrUndoMove.Tag = "UndoMove";
 			this.tbrUndoMove.ToolTipText = "Undo the last move";
-            // 
-            // tbrResumePlay
-            // 
+			// 
+			// tbrResumePlay
+			// 
 			this.tbrResumePlay.ImageIndex = 8;
 			this.tbrResumePlay.Name = "tbrResumePlay";
 			this.tbrResumePlay.Tag = "ResumePlay";
