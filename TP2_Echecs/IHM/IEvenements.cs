@@ -84,6 +84,7 @@ namespace TP2_Echecs.IHM
     {
         public EtatPartie etat { get; private set; }
         public CouleurCamp couleur { get; private set; }
+        public bool paused = false;
 
         private StatusPartie(EtatPartie etat, CouleurCamp couleur)
         {

@@ -422,18 +422,24 @@ namespace TP2_Echecs.IHM
                     break;
 
                 case "ResumePlay":
-                    // TODO
-                    break;
+                    status.paused = false;
+					tempsBlancs.Start();
+                    tempsNoirs.Start();
+					break;
 
                 case "PausePlay":
-                    // TODO
-                    break;
+                    status.paused = true;
+					tempsBlancs.Stop();
+					tempsNoirs.Stop();
+					break;
             }
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            RenderClocks();
+            if (!status.paused) { 
+                RenderClocks();
+            }
         }
 
         #endregion
